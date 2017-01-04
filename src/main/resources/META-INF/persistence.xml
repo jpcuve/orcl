@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="orcl">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.darts.orcl.entity.Department</class>
+        <class>com.darts.orcl.entity.Employee</class>
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/orcl"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="scott"/>
+            <property name="javax.persistence.jdbc.password" value="tiger"/>
+        </properties>
+    </persistence-unit>
+</persistence>

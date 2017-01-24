@@ -1,5 +1,7 @@
 package com.darts.orcl.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,8 +15,12 @@ import java.math.BigInteger;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Employee.EMPLOYEE_ALL, query = "select e from Employee e order by e.name")
+})
 @Table(name = "emp")
 public class Employee {
+    public static final String EMPLOYEE_ALL = "employee.all";
     @Id
     @Column(name = "empno")
     private Integer id;
@@ -24,6 +30,7 @@ public class Employee {
     @Basic
     @Column(name = "job")
     private String job;
+    @JsonIgnore
     @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mgr")
@@ -31,10 +38,14 @@ public class Employee {
     @Basic
     @Column(name = "sal")
     private BigInteger salary;
+    @JsonIgnore
     @XmlTransient
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "depno")
     private Department department;
+    @Basic
+    @Column(name = "mgr", insertable = false, updatable = false)
+    private Integer mgr;
     @Basic
     @Column(name = "depno", insertable = false, updatable = false)
     private Integer depno;
@@ -85,6 +96,14 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Integer getMgr() {
+        return mgr;
+    }
+
+    public void setMgr(Integer mgr) {
+        this.mgr = mgr;
     }
 
     public Integer getDepno() {

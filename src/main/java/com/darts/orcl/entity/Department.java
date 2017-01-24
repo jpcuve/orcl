@@ -6,8 +6,12 @@ import javax.persistence.*;
  * Created by jpc on 12/30/16.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Department.DEPARTMENT_ALL, query = "select d from Department d order by d.name")
+})
 @Table(name = "dept")
 public class Department {
+    public static final String DEPARTMENT_ALL = "department.all";
     @Id
     @Column(name = "depno")
     private Integer id;

@@ -1,4 +1,4 @@
-package com.darts.orcl.entity;
+package com.messio.orcl.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

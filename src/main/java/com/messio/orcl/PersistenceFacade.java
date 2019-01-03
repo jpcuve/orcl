@@ -1,6 +1,7 @@
-package com.darts.orcl;
+package com.messio.orcl;
 
-import com.darts.orcl.entity.*;
+import com.messio.orcl.domain.Department;
+import com.messio.orcl.domain.Employee;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -27,9 +29,9 @@ public class PersistenceFacade {
         return t;
     }
 
-    public <T, ID extends Serializable> T findOne(Class<T> clazz, ID pk){
+    public <T, ID extends Serializable> Optional<T> findOne(Class<T> clazz, ID pk){
         Objects.requireNonNull(pk);
-        return em.find(clazz, pk);
+        return Optional.ofNullable(em.find(clazz, pk));
     }
 
     public <T> T update(T t){

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/orcl
+    username: orcl
+    password: or33ere
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    com:
+      messio:
+        orcl: info
+    org:
+      hibernate:
+        SQL: info
